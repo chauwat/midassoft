@@ -1,7 +1,7 @@
 const memo: {[key: string]: boolean} = {}
 
 function minEnergy(
-    start: number, shops: number[], stations: number[], target: number, prevAction?: number
+    start: number, shops: number[], stations: number[], target: number
 ): number {
     // Base case
     if (start == target && shops.length == 0) {
@@ -20,11 +20,9 @@ function minEnergy(
 
     // Copy shop
     let remainingShops = [...shops];
-    let visitShop = false
 
     // Mark Visit: Remove that shops index
     if (remainingShops.includes(start)) {
-        visitShop = true
         remainingShops.splice(remainingShops.indexOf(start), 1);
     }
 
@@ -32,7 +30,7 @@ function minEnergy(
 
     // Action at anytime: Left, Right, Go to Station if at A
     // Go Left
-    if (start > minPathIndex && (prevAction != 2 || visitShop)) {
+    if (start > minPathIndex) {
         console.log("Walk L", start)
         totalEnergy.push(
             minEnergy(start - 1, remainingShops, stations, target, 1) + 1
@@ -40,7 +38,7 @@ function minEnergy(
     }
 
     // Go Right
-    if (start < maxPathIndex && (prevAction != 1 || visitShop)) {
+    if (start < maxPathIndex) {
         console.log("Walk R", start)
         totalEnergy.push(
             minEnergy(start + 1, remainingShops, stations, target, 2) + 1
@@ -57,7 +55,6 @@ function minEnergy(
             if (stationOut < minPathIndex || stationOut > maxPathIndex) {
                 continue
             }
-
 
             console.log("Go Station", start)
 
