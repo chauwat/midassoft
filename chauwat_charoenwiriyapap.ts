@@ -41,7 +41,6 @@ function minEnergy(
 
     // Go to stations
     if (stations.includes(start)) {
-        console.log("Go Station", start)
         for (let stationOut of stations) {
             if (start == stationOut) {
                 continue
@@ -50,6 +49,9 @@ function minEnergy(
             if (stationOut < minPathIndex || stationOut > maxPathIndex) {
                 continue
             }
+
+
+            console.log("Go Station", start)
 
             totalEnergy.push(
                 minEnergy(stationOut, remainingShops, stations, target)
@@ -66,8 +68,8 @@ function minEnergy(
 
 const test1 = {
     starts: 1,
-    shops: [3],
-    stations: [6, 8],
+    shops: [6],
+    stations: [3, 5],
     target: 2
 }
 
