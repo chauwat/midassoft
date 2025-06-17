@@ -69,7 +69,7 @@ function minEnergy(
 const test1 = {
     starts: 1,
     shops: [6],
-    stations: [3, 5],
+    stations: [],
     target: 2
 }
 
